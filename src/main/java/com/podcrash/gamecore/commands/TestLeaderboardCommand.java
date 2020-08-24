@@ -1,7 +1,7 @@
 package com.podcrash.gamecore.commands;
 
 import com.podcrash.gamecore.data.RedisDataSource;
-import com.podcrash.gamecore.leaderboard.Leaderboard;
+import com.podcrash.gamecore.leaderboard.LeaderboardManager;
 import com.podcrash.gamecore.leaderboard.LeaderboardType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,8 +20,8 @@ public class TestLeaderboardCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         String game = args[0];
         LeaderboardType leaderboardType = LeaderboardType.valueOf(args[1].toUpperCase());
-        Leaderboard leaderboard = new Leaderboard(game, redisDataSource);
-        leaderboard.display(leaderboardType, ((Player) sender).getLocation());
+        LeaderboardManager leaderboardManager = new LeaderboardManager(game, redisDataSource);
+        leaderboardManager.display(leaderboardType, ((Player) sender).getLocation());
         return true;
     }
 }

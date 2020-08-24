@@ -5,3 +5,5 @@ main: com.podcrash.gamecore.GameCore
 commands:
   lbtest:
     description: Testing leaderboard
+  titletest:
+    description: Testing titles

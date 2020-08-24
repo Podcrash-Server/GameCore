@@ -4,6 +4,7 @@ import co.aikar.taskchain.BukkitTaskChainFactory;
 import co.aikar.taskchain.TaskChain;
 import co.aikar.taskchain.TaskChainFactory;
 import com.podcrash.gamecore.commands.TestLeaderboardCommand;
+import com.podcrash.gamecore.commands.TestTitleCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class GameCore extends JavaPlugin {
@@ -14,6 +15,7 @@ public class GameCore extends JavaPlugin {
     public void onEnable() {
         taskChainFactory = BukkitTaskChainFactory.create(this);
         getCommand("lbtest").setExecutor(new TestLeaderboardCommand());
+        getCommand("titletest").setExecutor(new TestTitleCommand());
     }
 
     @Override

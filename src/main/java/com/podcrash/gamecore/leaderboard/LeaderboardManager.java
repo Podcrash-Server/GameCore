@@ -1,5 +1,6 @@
 package com.podcrash.gamecore.leaderboard;
 
+import com.podcrash.gamecore.GameModule;
 import com.podcrash.gamecore.data.RedisDataSource;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -11,12 +12,13 @@ import redis.clients.jedis.Tuple;
 
 import java.util.*;
 
-public class Leaderboard {
+public class LeaderboardManager extends GameModule {
 
     private final String game;
     private final Jedis jedis;
 
-    public Leaderboard(String game, RedisDataSource redisDataSource) {
+    public LeaderboardManager(String game, RedisDataSource redisDataSource) {
+        super("leaderboard");
         this.game = game;
         this.jedis = redisDataSource.getConnection();
     }
