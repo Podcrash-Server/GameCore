@@ -2,7 +2,27 @@ package com.podcrash.gamecore.utils;
 
 import org.bukkit.util.Vector;
 
+import java.util.Random;
+
 public final class MathUtil {
+
+    private static final Random random = new Random();
+
+    public static boolean randomBool() {
+        return random.nextBoolean();
+    }
+
+    public static int randomInt(int bound) {
+        return random.nextInt(bound);
+    }
+
+    public static int randomRange(int n, int k) {
+        return n+random.nextInt(k - n + 1);
+    }
+
+    public static double random() {
+        return random.nextDouble();
+    }
 
     public static double dumbMinecraftDegrees(double n) {
         return (n > 179.9) ? (-180.0 + (n - 179.9)) : n;
