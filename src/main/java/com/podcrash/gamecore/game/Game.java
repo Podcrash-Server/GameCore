@@ -8,14 +8,12 @@ import lombok.Setter;
 public abstract class Game implements IGame {
 
     private final String name;
-    private final int minPlayers;
+    private final int startingPlayers;
     private final int maxPlayers;
-    private final int hardMaxPlayers;
 
-    public Game(String name, int minPlayers, int maxPlayers, int hardMaxPlayers) {
+    protected Game(String name, int startingPlayers, int maxPlayers) {
         this.name = name;
-        this.minPlayers = minPlayers;
+        this.startingPlayers = startingPlayers;
         this.maxPlayers = maxPlayers;
-        this.hardMaxPlayers = hardMaxPlayers;
     }
 }
