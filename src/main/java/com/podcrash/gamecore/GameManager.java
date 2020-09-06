@@ -32,4 +32,15 @@ public class GameManager<T extends Game> {
     public void startGame() {
         game.start();
     }
+
+    public void stopGame() {
+        game.stop();
+    }
+
+    public void setUp() {
+    }
+
+    public void cleanUp() {
+        //
+    }
 }
