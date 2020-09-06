@@ -1,5 +1,6 @@
 package com.podcrash.gamecore.utils;
 
+import com.podcrash.gamecore.game.GameTeam;
 import com.podcrash.gamecore.nms.BossBar;
 import com.podcrash.gamecore.nms.PhysicsItem;
 import net.minecraft.server.v1_8_R3.*;
@@ -44,7 +45,7 @@ public final class NmsUtils {
         ((CraftScoreboard)team.getScoreboard()).getHandle().getTeam(team.getName()).setNameTagVisibility(ScoreboardTeamBase.EnumNameTagVisibility.NEVER);
     }
 
-/*   todo public static <T extends Game> void  sendInvisibility(GameScoreboard<T> scoreboard, T game) {
+   /* todo public static <T extends Game> void  sendInvisibility(GameScoreboard<T> scoreboard, T game) {
         for(Player player : game.getTeamA().getPlayers()) {
             if(game.getSpectators().contains(player))
                 continue;
@@ -73,11 +74,11 @@ public final class NmsUtils {
         }
     } */
 
-/*    TODO private static <T> void sendListPacket(SATeam team, Packet<?> packet) {
+    private static void sendListPacket(GameTeam team, Packet<?> packet) {
         for(Player player : team.getPlayers()) {
             ((CraftPlayer)player).getHandle().playerConnection.sendPacket(packet);
         }
-    } */
+    }
 
     public static PhysicsItem spawnPhysicsItem(Player player, ItemStack stack, double power) {
         return new PhysicsItem(((CraftPlayer)player).getHandle(), CraftItemStack.asNMSCopy(stack), power);
