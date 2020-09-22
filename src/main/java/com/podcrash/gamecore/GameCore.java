@@ -10,9 +10,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class GameCore extends JavaPlugin {
 
     private static TaskChainFactory taskChainFactory;
+    private static GameCore INSTANCE;
 
     @Override
     public void onEnable() {
+        INSTANCE = this;
+
         taskChainFactory = BukkitTaskChainFactory.create(this);
         getCommand("lbtest").setExecutor(new TestLeaderboardCommand());
         getCommand("titletest").setExecutor(new TestTitleCommand());
@@ -29,5 +32,10 @@ public class GameCore extends JavaPlugin {
 
     public static <T> TaskChain<T> newSharedChain(String name) {
         return taskChainFactory.newSharedChain(name);
+    }
+
+    public static GameCore getInstance() {
+        //Not adding npe check because you'll never get an instance of the plugin before the plugin exists.
+        return INSTANCE;
     }
 }
