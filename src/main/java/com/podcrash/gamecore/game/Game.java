@@ -1,10 +1,13 @@
 package com.podcrash.gamecore.game;
 
 import com.podcrash.gamecore.GameState;
+import com.podcrash.gamecore.utils.MathUtil;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +51,31 @@ public abstract class Game implements IGame {
     public void setGameStage(GameStage gameStage) {
         this.stage = gameStage;
         this.stage.execute(this);
+    }
+
+    public void clearPlayer(Player player) {
+        player.setExp(0);
+        player.setLevel(0);
+        player.setFireTicks(0);
+        player.setFoodLevel(20);
+        player.setFlying(false);
+        player.setFallDistance(0.0f);
+        player.setAllowFlight(false);
+        player.getInventory().clear();
+        player.setGameMode(GameMode.SURVIVAL);
+        player.getInventory().setArmorContents(null);
+        if (player.isInsideVehicle()) {
+            player.leaveVehicle();
+        }
+        for (PotionEffect potionEffect : player.getActivePotionEffects()) {
+            player.removePotionEffect(potionEffect.getType());
+        }
+        player.closeInventory();
+    }
+
+    public void addPlayerRandomTeam(Player player) {
+        int random = MathUtil.randomInt(teams.length);
+        teams[random].addPlayer(player);
     }
 
 }
