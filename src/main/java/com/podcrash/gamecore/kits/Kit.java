@@ -13,17 +13,12 @@ public abstract class Kit {
         setUpAbilities(abilities);
     }
 
-    public Kit() {
-
-    }
-
     public abstract String getName();
     public abstract String getPermission();
     public abstract List<String> getDescription();
     public abstract ItemStack getItem();
     public abstract ItemStack[] getArmor();
     public abstract ItemStack getWeapon();
-
 
     private void setUpAbilities(Class<? extends Ability>... abilities) {
 

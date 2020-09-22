@@ -5,11 +5,8 @@ import org.bukkit.inventory.ItemStack;
 
 public abstract class Ability implements Listener {
 
-    private long lastUsed = 0L;
+    private long lastUsed;
     private KitPlayer kitPlayer;
-
-    public Ability() {
-    }
 
     public abstract String getName();
     public abstract ItemStack getItem();

@@ -82,15 +82,7 @@ public class KitPlayer {
     public void equip() {
         getPlayer().getInventory().clear();
         getPlayer().getEquipment().clear();
-        if (getActiveKit() == null) {
-            ItemStack item = new ItemStack(Material.DIAMOND_SWORD, 1);
-            ItemMeta meta = item.getItemMeta();
-            meta.setDisplayName(ChatColor.GREEN + "" + ChatColor.BOLD + "Kit Selector");
-            item.setItemMeta(meta);
-
-            getPlayer().getInventory().setItem(4, item);
-            return;
-        }
+        if (getActiveKit() == null) return;
         getPlayer().getEquipment().setArmorContents(getActiveKit().getArmor());
         getPlayer().getInventory().setItem(0, getActiveKit().getWeapon());
 
