@@ -41,7 +41,7 @@ public class GameCore extends JavaPlugin {
         return INSTANCE;
     }
 
-    private static String getKitPrefix() {
+    public static String getKitPrefix() {
         return kitPrefix;
     }
 }
