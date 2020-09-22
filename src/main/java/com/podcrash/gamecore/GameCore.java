@@ -5,12 +5,14 @@ import co.aikar.taskchain.TaskChain;
 import co.aikar.taskchain.TaskChainFactory;
 import com.podcrash.gamecore.commands.TestLeaderboardCommand;
 import com.podcrash.gamecore.commands.TestTitleCommand;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class GameCore extends JavaPlugin {
 
     private static TaskChainFactory taskChainFactory;
     private static GameCore INSTANCE;
+    private static String kitPrefix = String.format("%sKit>%s", ChatColor.BLUE, ChatColor.GRAY);
 
     @Override
     public void onEnable() {
@@ -37,5 +39,9 @@ public class GameCore extends JavaPlugin {
     public static GameCore getInstance() {
         //Not adding npe check because you'll never get an instance of the plugin before the plugin exists.
         return INSTANCE;
+    }
+
+    private static String getKitPrefix() {
+        return kitPrefix;
     }
 }
