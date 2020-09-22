@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GameTeam {
     private GameSide side;
-    private List<Player> players;
+    private final List<Player> players;
 
     public GameTeam(List<Player> players) {
         this.players = players;
