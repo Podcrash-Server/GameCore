@@ -12,13 +12,12 @@ public interface Drop extends IAbility {
     default void drop(PlayerDropItemEvent e) {
         KitPlayer kitPlayer = KitPlayerManager.getKitPlayerFromPlayer(e.getPlayer());
         if (kitPlayer == null) return;
-        if (kitPlayer != getKitPlayer()) return;
         if (kitPlayer.getPlayer().getItemInHand().getType() != getItemType()) return;
         e.setCancelled(true);
         if (this instanceof Cooldown) {
             if (!((Cooldown) this).hasCooldown()) return; //redundant? Assuming if this implements Cooldown it has a cooldown...
             if (((Cooldown) this).onCooldown()) {
-                getKitPlayer().getPlayer().sendMessage(((Cooldown) this).getCooldownMessage());
+                kitPlayer.getPlayer().sendMessage(((Cooldown) this).getCooldownMessage());
                 return;
             }
         }
@@ -29,7 +28,6 @@ public interface Drop extends IAbility {
 
     }
 
-    KitPlayer getKitPlayer();
     Material getItemType();
     void doAbility();
 }
