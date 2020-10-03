@@ -1,5 +1,5 @@
 package com.podcrash.gamecore.kits.abilitytype;
 
-public interface Passive {
+public interface Passive extends IAbility{
 
 }
