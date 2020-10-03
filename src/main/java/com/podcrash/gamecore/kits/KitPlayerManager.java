@@ -15,8 +15,9 @@ public class KitPlayerManager {
     private static List<KitPlayer> kitPlayers = new ArrayList<>();
 
     public static void register(KitPlayer player) {
-        player.equip();
         player.getPlayer().resetMaxHealth();
+
+        //For games where players can select multiple kits.
         if (!player.getUsedKits().isEmpty()) {
             Kit lastKit = player.getUsedKits().get(player.getUsedKits().size() - 1);
             if (lastKit != null) unregisterAbilities(lastKit);
