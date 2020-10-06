@@ -8,12 +8,13 @@ public abstract class Kit {
 
     private List<Ability> abilities;
     private long lastUsed;
+    private String name;
 
-    public Kit(Class<? extends Ability>... abilities) {
+    public Kit(String name, Class<? extends Ability>... abilities) {
+        this.name = name;
         setUpAbilities(abilities);
     }
 
-    public abstract String getName();
     public abstract String getPermission();
     public abstract List<String> getDescription();
     public abstract ItemStack getItem();
@@ -47,6 +48,10 @@ public abstract class Kit {
 
     public long getLastUsed() {
         return lastUsed;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

@@ -4,8 +4,7 @@ import com.podcrash.gamecore.GameCore;
 import org.bukkit.ChatColor;
 import java.text.DecimalFormat;
 
-public interface Cooldown {
-    String getName();
+public interface Cooldown extends IAbility {
 
     float getCooldown();
 
@@ -20,11 +19,7 @@ public interface Cooldown {
     }
 
     long getLastUsed();
-
-
-    default String getUsedMessage() {
-        return String.format("%s You have used %s%s", GameCore.getKitPrefix(), ChatColor.GREEN, getName());
-    }
+    void setLastUsed(long time);
 
     default String getCooldownMessage() {
         DecimalFormat decimalFormat = new DecimalFormat("##.#");
