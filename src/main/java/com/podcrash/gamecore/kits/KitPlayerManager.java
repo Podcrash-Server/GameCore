@@ -1,6 +1,9 @@
 package com.podcrash.gamecore.kits;
 
 import com.podcrash.gamecore.GameCore;
+import com.podcrash.gamecore.kits.abilitytype.AfterConstruct;
+import com.podcrash.gamecore.kits.abilitytype.ChargedAbility;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -81,6 +84,12 @@ public class KitPlayerManager {
 
     private static void unregisterAbilities(Kit lastKit) {
         for (Ability ability : lastKit.getAbilities()) {
+
+            if (ability instanceof ChargedAbility) {
+                ChargedAbility chargedAbility = (ChargedAbility) ability;
+                Bukkit.getScheduler().cancelTask(chargedAbility.getTaskId());
+            }
+
             HandlerList.unregisterAll(ability);
             plugin.getLogger().info(String.format("[LISTENER] Unregistered listener: %s", ability.getClass().getSimpleName()));
         }
@@ -88,6 +97,22 @@ public class KitPlayerManager {
 
     private static void registerAbilities(KitPlayer kitPlayer, Kit currentKit) {
         for (Ability ability : currentKit.getAbilities()) {
+
+            if (ability instanceof ChargedAbility) {
+
+                ChargedAbility chargedAbility = (ChargedAbility) ability;
+                int taskid = Bukkit.getScheduler().scheduleSyncRepeatingTask(GameCore.getInstance(), () -> {
+
+                    if (chargedAbility.getCurrentCharges() >= chargedAbility.getMaxCharges()) return;
+                    chargedAbility.addCharge();
+
+                }, 20, chargedAbility.getSecondsBetweenCharge());
+
+                chargedAbility.setTaskId(taskid);
+
+            }
+
+            if (ability instanceof AfterConstruct) ((AfterConstruct) ability).onConstruct();
             plugin.getLogger().info(String.format("[LISTENER] Registered listener: %s", ability.getClass().getSimpleName()));
             plugin.getServer().getPluginManager().registerEvents(ability, plugin);
             ability.setKitPlayer(kitPlayer);
