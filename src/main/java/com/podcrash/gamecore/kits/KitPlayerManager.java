@@ -106,7 +106,7 @@ public class KitPlayerManager {
                     if (chargedAbility.getCurrentCharges() >= chargedAbility.getMaxCharges()) return;
                     chargedAbility.addCharge();
 
-                }, 20, chargedAbility.getSecondsBetweenCharge());
+                }, 20, chargedAbility.getSecondsBetweenCharge() * 20);
 
                 chargedAbility.setTaskId(taskid);
 
