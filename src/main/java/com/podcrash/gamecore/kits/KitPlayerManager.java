@@ -33,7 +33,6 @@ public class KitPlayerManager {
             player.getPlayer().playSound(player.getPlayer().getLocation(), Sound.NOTE_PLING, 3, 1);
             return;
         }
-        registerAbilities(player, currentKit);
 
         player.addUsedKit(currentKit);
         player.getPlayer().sendMessage(String.format("%s You have equipped %s%s!", GameCore.getKitPrefix(), player.getActiveKit().getName(), ChatColor.WHITE));
@@ -46,28 +45,30 @@ public class KitPlayerManager {
         kitPlayers.add(player);
     }
 
-    public static void removeKitPlayer(KitPlayer player) {
-        if (!(getKitPlayers().contains(player))) return;
-        kitPlayers.remove(player);
-
-        kitPlayerDies(player);
-    }
-
-    public static void kitPlayerLeaves(KitPlayer kitPlayer) {
-        if (kitPlayer.getActiveKit() == null) return;
-        unregisterAbilities(kitPlayer.getActiveKit());
-        for (Kit kit : kitPlayer.getUsedKits()) {
-            System.out.println(kit.getName());
-        }
-    }
-
-    public static void kitPlayerDies(KitPlayer player) {
-        if (player.getActiveKit() == null) {
-            player.equip();
+    public static void removeKitPlayer(KitPlayer kitPlayer) {
+        if (kitPlayer == null) return;
+        if (getKitPlayers().contains(kitPlayer)) kitPlayers.remove(kitPlayer);
+        if (kitPlayer.getUsedKits().isEmpty()) return;
+        if (kitPlayer.getActiveKit() == null) {
+            //-2 because -1 would just take it back to the last item in the list?
+            Kit lastKit = kitPlayer.getUsedKits().get(kitPlayer.getUsedKits().size() - 2);
+            if (lastKit != null) unregisterAbilities(lastKit);
             return;
         }
-        unregisterAbilities(player.getActiveKit());
-        player.selectKit(null);
+        unregisterAbilities(kitPlayer.getActiveKit());
+    }
+
+    public static void gameStarts() {
+        for (KitPlayer kitPlayer : getKitPlayers()) {
+            if (kitPlayer == null || kitPlayer.getActiveKit() == null) return;
+            registerAbilities(kitPlayer, kitPlayer.getActiveKit());
+        }
+    }
+
+    public static void gameEnds() {
+        for (KitPlayer kitPlayer : getKitPlayers()) {
+            removeKitPlayer(kitPlayer);
+        }
     }
 
     public static List<KitPlayer> getKitPlayers() {

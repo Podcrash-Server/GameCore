@@ -38,6 +38,17 @@ public abstract class Kit {
 
     }
 
+    public void addAbilityKit(Class<? extends Ability> ability) {
+        //should never happen but just in-case
+        if (ability == null) return;
+        try {
+            Ability newAbility = ability.newInstance();
+            this.abilities.add(newAbility);
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Ability> getAbilities() {
         return abilities;
     }

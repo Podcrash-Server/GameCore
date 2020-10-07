@@ -97,6 +97,11 @@ public class KitPlayer {
         getPlayer().updateInventory();
     }
 
+    public void addAbilityToActiveKit(Class<? extends Ability> ability) {
+        if (getActiveKit() == null) return;
+        getActiveKit().addAbilityKit(ability);
+    }
+
     private boolean itemIsArmor(ItemStack item) {
         if (armorMaterials.contains(item.getType())) return true;
         return false;
