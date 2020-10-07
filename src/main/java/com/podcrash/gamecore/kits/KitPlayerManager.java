@@ -21,7 +21,8 @@ public class KitPlayerManager {
         player.getPlayer().resetMaxHealth();
 
         //For games where players can select multiple kits.
-        if (!player.getUsedKits().isEmpty()) {
+        if (!player.getUsedKits().isEmpty() && player.getUsedKits().size() > 1) {
+            //Only -1 here because new active kit isn't yet added to the list of used kits, therefor the kit to be unregistered is the last in the list.
             Kit lastKit = player.getUsedKits().get(player.getUsedKits().size() - 1);
             if (lastKit != null) unregisterAbilities(lastKit);
         }
