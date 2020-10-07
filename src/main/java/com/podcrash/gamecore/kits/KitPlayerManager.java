@@ -101,8 +101,8 @@ public class KitPlayerManager {
         for (Ability ability : currentKit.getAbilities()) {
 
             if (ability instanceof ChargedAbility) {
-
                 ChargedAbility chargedAbility = (ChargedAbility) ability;
+                if (!chargedAbility.passivelyGainCharges()) return;
                 int taskid = Bukkit.getScheduler().scheduleSyncRepeatingTask(GameCore.getInstance(), () -> {
 
                     if (chargedAbility.getCurrentCharges() >= chargedAbility.getMaxCharges()) return;

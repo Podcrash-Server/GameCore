@@ -14,6 +14,7 @@ public abstract class ChargedAbility extends Ability implements IAbility {
     public abstract void addCharge();
     public abstract void removeCharge();
     public abstract int getMaxCharges();
+    public abstract boolean passivelyGainCharges();
 
     public void setTaskId(int id) {
         this.taskId = id;
