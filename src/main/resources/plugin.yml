@@ -1,9 +1,3 @@
 name: GameCore
 version: 1.0-SNAPSHOT
-main: com.podcrash.gamecore.GameCore
-
-commands:
-  lbtest:
-    description: Testing leaderboard
-  titletest:
-    description: Testing titles
+main: com.podcrash.game.GameCore
