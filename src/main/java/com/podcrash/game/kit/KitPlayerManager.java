@@ -1,6 +1,6 @@
 package com.podcrash.game.kit;
 
-import com.podcrash.gamecore.GameCore;
+import com.podcrash.game.Game;
 import com.podcrash.game.kit.abilitytype.AfterConstruct;
 import com.podcrash.game.kit.abilitytype.ChargedAbility;
 import org.bukkit.Bukkit;
@@ -9,12 +9,13 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class KitPlayerManager {
 
-    private static JavaPlugin plugin = GameCore.getInstance();
+    private static JavaPlugin plugin = Game.getInstance().getPlugin();
     private static List<KitPlayer> kitPlayers = new ArrayList<>();
 
     public static void register(KitPlayer player) {
@@ -36,7 +37,7 @@ public class KitPlayerManager {
         registerAbilities(player, currentKit);
 
         player.addUsedKit(currentKit);
-        player.getPlayer().sendMessage(String.format("%s You have equipped %s%s!", GameCore.getKitPrefix(), player.getActiveKit().getName(), ChatColor.WHITE));
+        player.getPlayer().sendMessage(String.format("%s You have equipped %s%s!", "GameCore.getKitPrefix()", player.getActiveKit().getName(), ChatColor.WHITE));
         player.getPlayer().playSound(player.getPlayer().getLocation(), Sound.NOTE_PLING, 3, 2);
         plugin.getServer().getLogger().info(String.format("[KIT] %s has been assigned %s", player.getPlayer().getName(), player.getActiveKit().getName()));
     }
@@ -101,7 +102,7 @@ public class KitPlayerManager {
             if (ability instanceof ChargedAbility) {
 
                 ChargedAbility chargedAbility = (ChargedAbility) ability;
-                int taskid = Bukkit.getScheduler().scheduleSyncRepeatingTask(GameCore.getInstance(), () -> {
+                int taskid = Bukkit.getScheduler().scheduleSyncRepeatingTask(Game.getInstance().getPlugin(), () -> {
 
                     if (chargedAbility.getCurrentCharges() >= chargedAbility.getMaxCharges()) return;
                     chargedAbility.addCharge();

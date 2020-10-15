@@ -1,12 +1,12 @@
 package com.podcrash.game.kit;
 
-import com.podcrash.gamecore.GameCore;
 import com.podcrash.game.kit.abilitytype.Cooldown;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -137,11 +137,11 @@ public class KitPlayer {
     }
 
     public String getDebuffMessage(String debuff, int duration) {
-        return String.format("%s You have been %s%s%s for %s%s%s seconds!", GameCore.getKitPrefix(), ChatColor.GREEN, debuff, ChatColor.GRAY, ChatColor.GREEN, duration, ChatColor.GRAY);
+        return String.format("%s You have been %s%s%s for %s%s%s seconds!", "Game.getKitPrefix()", ChatColor.GREEN, debuff, ChatColor.GRAY, ChatColor.GREEN, duration, ChatColor.GRAY);
     }
 
     public String getCannotUseMessage(String reason) {
-        return String.format("%s You cannot use this ability while %s%s%s!", GameCore.getKitPrefix(), ChatColor.GREEN, reason, ChatColor.GRAY);
+        return String.format("%s You cannot use this ability while %s%s%s!", "Game.getKitPrefix()", ChatColor.GREEN, reason, ChatColor.GRAY);
     }
 
 }

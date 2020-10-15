@@ -1,6 +1,5 @@
 package com.podcrash.game.kit.abilitytype;
 
-import com.podcrash.gamecore.GameCore;
 import org.bukkit.ChatColor;
 import java.text.DecimalFormat;
 
@@ -25,7 +24,7 @@ public interface Cooldown extends IAbility {
         DecimalFormat decimalFormat = new DecimalFormat("##.#");
         return String.format(
                 "%s %s%s%s cannot be used for %s%s%s minutes!",
-                GameCore.getKitPrefix(),
+                "GameCore.getKitPrefix()",
                 ChatColor.GREEN,
                 getName(),
                 ChatColor.GRAY,

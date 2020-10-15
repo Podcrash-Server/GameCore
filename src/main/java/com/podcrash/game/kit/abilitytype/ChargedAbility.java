@@ -1,6 +1,5 @@
 package com.podcrash.game.kit.abilitytype;
 
-import com.podcrash.gamecore.GameCore;
 import com.podcrash.game.kit.Ability;
 
 public abstract class ChargedAbility extends Ability implements IAbility {
@@ -24,11 +23,11 @@ public abstract class ChargedAbility extends Ability implements IAbility {
     }
 
     public String getCurrentChargeMessage() {
-        return String.format("%s %s %s charges!", GameCore.getKitPrefix(), getCurrentCharges(), getChargeName());
+        return String.format("%s %s %s charges!", "GameCore.getKitPrefix()", getCurrentCharges(), getChargeName());
     }
 
     public String getNoChargesMessage() {
-        return String.format("%s No %s charges!", GameCore.getKitPrefix(), getChargeName());
+        return String.format("%s No %s charges!", "GameCore.getKitPrefix()", getChargeName());
     }
 
 }
