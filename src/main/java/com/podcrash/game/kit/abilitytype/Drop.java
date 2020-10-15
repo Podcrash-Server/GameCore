@@ -1,12 +1,10 @@
 package com.podcrash.game.kit.abilitytype;
 
-import com.podcrash.game.kit.KitPlayer;
+import com.podcrash.game.kit.KitPlayer;;
 import com.podcrash.game.kit.KitPlayerManager;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerDropItemEvent;
-
-;
 
 public interface Drop extends IAbility {
 

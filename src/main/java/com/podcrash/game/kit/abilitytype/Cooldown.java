@@ -2,7 +2,6 @@ package com.podcrash.game.kit.abilitytype;
 
 import com.podcrash.gamecore.GameCore;
 import org.bukkit.ChatColor;
-
 import java.text.DecimalFormat;
 
 public interface Cooldown extends IAbility {

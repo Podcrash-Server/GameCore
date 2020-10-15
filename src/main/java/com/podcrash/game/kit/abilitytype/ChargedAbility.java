@@ -1,7 +1,7 @@
 package com.podcrash.game.kit.abilitytype;
 
-import com.podcrash.game.kit.Ability;
 import com.podcrash.gamecore.GameCore;
+import com.podcrash.game.kit.Ability;
 
 public abstract class ChargedAbility extends Ability implements IAbility {
 

@@ -1,8 +1,8 @@
-package com.podcrash.gamecore.utils;
+package com.podcrash.game.utils;
 
 import com.podcrash.gamecore.game.GameTeam;
-import com.podcrash.gamecore.nms.BossBar;
-import com.podcrash.gamecore.nms.PhysicsItem;
+import com.podcrash.game.nms.BossBar;
+import com.podcrash.game.nms.PhysicsItem;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;

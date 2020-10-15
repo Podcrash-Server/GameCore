@@ -1,4 +1,4 @@
-package com.podcrash.gamecore.nms;
+package com.podcrash.game.nms;
 
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
 import org.bukkit.Material;

@@ -1,4 +1,4 @@
-package com.podcrash.gamecore.utils;
+package com.podcrash.game.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
