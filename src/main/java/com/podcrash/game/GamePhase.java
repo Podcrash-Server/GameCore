@@ -1,54 +1,29 @@
 package com.podcrash.game;
 
-import org.bukkit.event.*;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockExpEvent;
-import org.bukkit.event.entity.*;
-import org.bukkit.plugin.RegisteredListener;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.function.Consumer;
-
-public abstract class GamePhase implements IGamePhase {
+public abstract class GamePhase implements IGamePhase, Listener {
 
     private final String name;
 
+    private boolean active;
+
     protected GamePhase(String name) {
         this.name = name;
+        this.active = false;
+        Bukkit.getServer().getPluginManager().registerEvents(this, Game.getInstance().getPlugin());
     }
 
     public String getName() {
         return name;
     }
 
-    public <T extends Event> void registerListener(Class<T> eventClass, Consumer<T> consumer, EventPriority eventPriority) {
-        try {
-            Method method;
-            if (eventClass == EntityDamageByEntityEvent.class) {
-                method = EntityDamageEvent.class.getDeclaredMethod("getHandlerList");
-            } else if (eventClass == BlockBreakEvent.class) {
-                method = BlockExpEvent.class.getDeclaredMethod("getHandlerList");
-            } else if (eventClass == PlayerDeathEvent.class) {
-                method = EntityDeathEvent.class.getDeclaredMethod("getHandlerList");
-            } else if (eventClass == EntityTargetLivingEntityEvent.class) {
-                method = EntityTargetEvent.class.getDeclaredMethod("getHandlerList");
-            } else {
-                method = eventClass.getDeclaredMethod("getHandlerList");
-            }
-            HandlerList handlerList = (HandlerList) method.invoke(null);
-            handlerList.register(new RegisteredListener(new Listener() {
-                @Override
-                public int hashCode() {
-                    return super.hashCode();
-                }
-            }, (listener, event) -> {
-                if (!eventClass.getName().equals(event.getClass().getName()))
-                    return;
-                consumer.accept((T) event);
-            }, eventPriority, Game.getInstance().getPlugin(), false));
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
