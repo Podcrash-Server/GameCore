@@ -1,6 +1,6 @@
-package com.podcrash.game.kit;
+package com.podcrash.game.oldkit;
 
-import com.podcrash.game.kit.abilitytype.Cooldown;
+import com.podcrash.game.oldkit.abilitytype.Cooldown;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;

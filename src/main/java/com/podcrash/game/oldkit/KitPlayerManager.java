@@ -1,8 +1,8 @@
-package com.podcrash.game.kit;
+package com.podcrash.game.oldkit;
 
 import com.podcrash.game.Game;
-import com.podcrash.game.kit.abilitytype.AfterConstruct;
-import com.podcrash.game.kit.abilitytype.ChargedAbility;
+import com.podcrash.game.oldkit.abilitytype.AfterConstruct;
+import com.podcrash.game.oldkit.abilitytype.ChargedAbility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;

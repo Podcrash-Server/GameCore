@@ -5,26 +5,36 @@ import org.bukkit.inventory.ItemStack;
 
 public abstract class Ability implements Listener {
 
+    private final int slot;
+    private final ItemStack itemStack;
+    private final boolean canDrop;
+
     private long lastUsed;
-    private KitPlayer kitPlayer;
 
-    public abstract String getName();
-    public abstract ItemStack getItem();
-
-    public KitPlayer getKitPlayer() {
-        return kitPlayer;
+    protected Ability(int slot, ItemStack itemStack, boolean canDrop) {
+        this.slot = slot;
+        this.itemStack = itemStack;
+        this.canDrop = canDrop;
+        this.lastUsed = 0;
     }
 
-    public void setKitPlayer(KitPlayer kitPlayer) {
-        this.kitPlayer = kitPlayer;
+    public int getSlot() {
+        return slot;
+    }
+
+    public ItemStack getItemStack() {
+        return itemStack;
+    }
+
+    public boolean canDrop() {
+        return canDrop;
     }
 
     public long getLastUsed() {
         return lastUsed;
     }
 
-    public void setLastUsed(long time) {
-        this.lastUsed = time;
+    public void setLastUsed(long lastUsed) {
+        this.lastUsed = lastUsed;
     }
-
 }

@@ -1,6 +1,6 @@
-package com.podcrash.game.kit.abilitytype;
+package com.podcrash.game.oldkit.abilitytype;
 
-import com.podcrash.game.kit.Ability;
+import com.podcrash.game.oldkit.Ability;
 
 public abstract class ChargedAbility extends Ability implements IAbility {
 

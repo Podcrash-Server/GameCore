@@ -1,4 +1,4 @@
-package com.podcrash.game.kit.abilitytype;
+package com.podcrash.game.oldkit.abilitytype;
 
 public interface Passive extends IAbility{
 

@@ -1,7 +1,7 @@
-package com.podcrash.game.kit.abilitytype;
+package com.podcrash.game.oldkit.abilitytype;
 
-import com.podcrash.game.kit.KitPlayer;
-import com.podcrash.game.kit.KitPlayerManager;
+import com.podcrash.game.oldkit.KitPlayer;
+import com.podcrash.game.oldkit.KitPlayerManager;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;

@@ -1,4 +1,4 @@
-package com.podcrash.game.kit.abilitytype;
+package com.podcrash.game.oldkit.abilitytype;
 
 import org.bukkit.entity.Player;
 
