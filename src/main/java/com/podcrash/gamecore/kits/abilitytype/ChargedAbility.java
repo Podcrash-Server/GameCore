@@ -9,6 +9,7 @@ public abstract class ChargedAbility extends Ability implements IAbility {
 
     public abstract String getChargeName();
     public abstract boolean startsWithMaxCharges();
+    public abstract void setCharges(int amount);
     public abstract int getSecondsBetweenCharge();
     public abstract int getCurrentCharges();
     public abstract void addCharge();

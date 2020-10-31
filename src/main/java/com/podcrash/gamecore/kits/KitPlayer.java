@@ -1,6 +1,7 @@
 package com.podcrash.gamecore.kits;
 
 import com.podcrash.gamecore.GameCore;
+import com.podcrash.gamecore.game.GameTeam;
 import com.podcrash.gamecore.kits.abilitytype.Cooldown;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -19,6 +20,7 @@ public class KitPlayer {
     private long empoweredAt, empoweredFor = 0;
     private long silencedAt, silencedFor = 0;
     private int kills;
+    private GameTeam team;
     private List<Material> armorMaterials = Arrays.asList(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS,
             Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS,
             Material.CHAINMAIL_HELMET, Material.CHAINMAIL_CHESTPLATE, Material.CHAINMAIL_LEGGINGS, Material.CHAINMAIL_BOOTS,
@@ -32,6 +34,18 @@ public class KitPlayer {
 
         selectKit(null);
         KitPlayerManager.addKitPlayer(this);
+    }
+
+    public void setTeam(GameTeam team) {
+        this.team = team;
+    }
+
+    public GameTeam getTeam() {
+        return team;
+    }
+
+    public boolean isAlly(Player player) {
+        return getTeam().getPlayers().contains(player);
     }
 
     public int getKillCount() {
@@ -102,7 +116,7 @@ public class KitPlayer {
         getActiveKit().addAbilityKit(ability);
     }
 
-    private boolean itemIsArmor(ItemStack item) {
+    public boolean itemIsArmor(ItemStack item) {
         if (armorMaterials.contains(item.getType())) return true;
         return false;
     }

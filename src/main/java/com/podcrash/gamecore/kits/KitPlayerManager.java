@@ -62,6 +62,7 @@ public class KitPlayerManager {
     public static void gameStarts() {
         for (KitPlayer kitPlayer : getKitPlayers()) {
             if (kitPlayer == null || kitPlayer.getActiveKit() == null) return;
+            kitPlayer.equip();
             registerAbilities(kitPlayer, kitPlayer.getActiveKit());
         }
     }
@@ -76,6 +77,16 @@ public class KitPlayerManager {
         return kitPlayers;
     }
 
+    public static List<Player> getPlayers() {
+        List<Player> players = new ArrayList<>();
+
+        for (KitPlayer kitPlayer : getKitPlayers()) {
+            players.add(kitPlayer.getPlayer());
+        }
+
+        return players;
+    }
+
     public static KitPlayer getKitPlayerFromPlayer(Player player) {
         for (KitPlayer kitPlayer : getKitPlayers()) {
             if (kitPlayer.getPlayer().getUniqueId() == player.getUniqueId()) return kitPlayer;
@@ -84,7 +95,7 @@ public class KitPlayerManager {
         return null;
     }
 
-    private static void unregisterAbilities(Kit lastKit) {
+    public static void unregisterAbilities(Kit lastKit) {
         for (Ability ability : lastKit.getAbilities()) {
 
             if (ability instanceof ChargedAbility) {
@@ -97,11 +108,12 @@ public class KitPlayerManager {
         }
     }
 
-    private static void registerAbilities(KitPlayer kitPlayer, Kit currentKit) {
+    public static void registerAbilities(KitPlayer kitPlayer, Kit currentKit) {
         for (Ability ability : currentKit.getAbilities()) {
 
             if (ability instanceof ChargedAbility) {
                 ChargedAbility chargedAbility = (ChargedAbility) ability;
+                if (chargedAbility.startsWithMaxCharges()) chargedAbility.setCharges(chargedAbility.getMaxCharges());
                 if (!chargedAbility.passivelyGainCharges()) return;
                 int taskid = Bukkit.getScheduler().scheduleSyncRepeatingTask(GameCore.getInstance(), () -> {
 
@@ -121,4 +133,10 @@ public class KitPlayerManager {
         }
     }
 
+    public static boolean isOnSameTeam(Player player, Player compassHolder) {
+        KitPlayer player1 = getKitPlayerFromPlayer(player);
+        KitPlayer player2 = getKitPlayerFromPlayer(compassHolder);
+
+        return player1.getTeam().getSide() == player2.getTeam().getSide();
+    }
 }
