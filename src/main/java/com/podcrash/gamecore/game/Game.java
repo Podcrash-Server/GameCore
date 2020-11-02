@@ -1,6 +1,5 @@
 package com.podcrash.gamecore.game;
 
-import com.podcrash.gamecore.map.GameMap;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -17,7 +16,6 @@ public abstract class Game implements IGame {
     private final int maxPlayers;
     private final int hardMaxPlayers;
     private final List<GameTeam> teams;
-    private GameMap activeMap;
 
     public Game(String name, int minPlayers, int maxPlayers, int hardMaxPlayers) {
         this.name = name;
