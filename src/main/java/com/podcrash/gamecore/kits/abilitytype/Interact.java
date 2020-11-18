@@ -21,7 +21,8 @@ public interface Interact extends IAbility {
 
         KitPlayer kitPlayer = KitPlayerManager.getKitPlayerFromPlayer(e.getPlayer());
         if (kitPlayer == null) return;
-        if (e.getItem() != null) if (e.getItem().getType() != getItem().getType()) return;
+        if (e.getPlayer().getItemInHand() == null) return;
+        if (e.getPlayer().getItemInHand().getType() != getItem().getType()) return;
         if (!getActions().contains(e.getAction())) return;
 
         if (this instanceof Cooldown) {

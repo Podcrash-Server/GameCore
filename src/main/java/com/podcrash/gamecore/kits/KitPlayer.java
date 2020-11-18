@@ -76,6 +76,10 @@ public class KitPlayer {
         return activeKit;
     }
 
+    public void setActiveKit(Kit kit) {
+        this.activeKit = kit;
+    }
+
     public void selectKit(Kit kit) {
         List<Kit> kits = getUsedKits();
 
